@@ -7,21 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Installation
-
-- git clone https://github.com/albaihaqiMF/laravel-react.git {your-app-name}.
-- composer install.
-- yarn && yarn watch | npm install && npm run watch (if you don't have yarn package).
-- php -r "file_exists('.env') || copy('.env.example', '.env').
-- php artisan key:generate.
-- php artisan migrate:fresh.
-
-## Require
-
-- [composer v2^](https://getcomposer.org/).
-- [php v8.0.2^](https://www.php.net/).
-- [node v16^](https://nodejs.org/).
-
+### Gradien.co
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

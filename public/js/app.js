@@ -11832,6 +11832,7 @@ function UpdateProfileInformationForm(_a) {
   var form = (0, inertia_react_1.useForm)({
     _method: 'PUT',
     name: user.name,
+    username: user.username,
     email: user.email,
     photo: null
   });
@@ -11929,7 +11930,7 @@ function UpdateProfileInformationForm(_a) {
   react_1["default"].createElement("div", {
     className: "mt-2"
   }, react_1["default"].createElement("span", {
-    className: "block rounded-full w-20 h-20",
+    className: "block w-20 h-20 rounded-full",
     style: {
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
@@ -11942,7 +11943,7 @@ function UpdateProfileInformationForm(_a) {
   }, react_1["default"].createElement("img", {
     src: user.profile_photo_url,
     alt: user.name,
-    className: "rounded-full h-20 w-20 object-cover"
+    className: "object-cover w-20 h-20 rounded-full"
   })), react_1["default"].createElement(SecondaryButton_1["default"], {
     className: "mt-2 mr-2",
     type: "button",
@@ -11962,7 +11963,7 @@ function UpdateProfileInformationForm(_a) {
   }), react_1["default"].createElement(Input_1["default"], {
     id: "name",
     type: "text",
-    className: "mt-1 block w-full",
+    className: "block w-full mt-1",
     value: form.data.name,
     onChange: function onChange(e) {
       return form.setData('name', e.currentTarget.value);
@@ -11974,12 +11975,29 @@ function UpdateProfileInformationForm(_a) {
   })), react_1["default"].createElement("div", {
     className: "col-span-6 sm:col-span-4"
   }, react_1["default"].createElement(Label_1["default"], {
+    htmlFor: "username",
+    value: "Username"
+  }), react_1["default"].createElement(Input_1["default"], {
+    id: "username",
+    type: "text",
+    className: "block w-full mt-1",
+    value: form.data.username,
+    onChange: function onChange(e) {
+      return form.setData('username', e.currentTarget.value);
+    },
+    autoComplete: "username"
+  }), react_1["default"].createElement(InputError_1["default"], {
+    message: form.errors.username,
+    className: "mt-2"
+  })), react_1["default"].createElement("div", {
+    className: "col-span-6 sm:col-span-4"
+  }, react_1["default"].createElement(Label_1["default"], {
     htmlFor: "email",
     value: "Email"
   }), react_1["default"].createElement(Input_1["default"], {
     id: "email",
     type: "email",
-    className: "mt-1 block w-full",
+    className: "block w-full mt-1",
     value: form.data.email,
     onChange: function onChange(e) {
       return form.setData('email', e.currentTarget.value);
@@ -14559,7 +14577,7 @@ function Login(_a) {
       status = _a.status;
   var route = (0, useRoute_1["default"])();
   var form = (0, inertia_react_1.useForm)({
-    email: '',
+    username: '',
     password: '',
     remember: ''
   });
@@ -14578,18 +14596,18 @@ function Login(_a) {
   }), react_1["default"].createElement(ValidationErrors_1["default"], {
     className: "mb-4"
   }), status && react_1["default"].createElement("div", {
-    className: "mb-4 font-medium text-sm text-green-600"
+    className: "mb-4 text-sm font-medium text-green-600"
   }, status), react_1["default"].createElement("form", {
     onSubmit: onSubmit
   }, react_1["default"].createElement("div", null, react_1["default"].createElement(Label_1["default"], {
-    htmlFor: "email"
-  }, "Email"), react_1["default"].createElement(Input_1["default"], {
-    id: "email",
-    type: "email",
-    className: "mt-1 block w-full",
-    value: form.data.email,
+    htmlFor: "username"
+  }, "Username"), react_1["default"].createElement(Input_1["default"], {
+    id: "username",
+    type: "text",
+    className: "block w-full mt-1",
+    value: form.data.username,
     onChange: function onChange(e) {
-      return form.setData('email', e.currentTarget.value);
+      return form.setData('username', e.currentTarget.value);
     },
     required: true,
     autoFocus: true
@@ -14600,7 +14618,7 @@ function Login(_a) {
   }, "Password"), react_1["default"].createElement(Input_1["default"], {
     id: "password",
     type: "password",
-    className: "mt-1 block w-full",
+    className: "block w-full mt-1",
     value: form.data.password,
     onChange: function onChange(e) {
       return form.setData('password', e.currentTarget.value);
@@ -14620,15 +14638,15 @@ function Login(_a) {
   }), react_1["default"].createElement("span", {
     className: "ml-2 text-sm text-gray-600"
   }, "Remember me"))), react_1["default"].createElement("div", {
-    className: "flex flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0 mt-4"
+    className: "flex flex-col mt-4 space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0"
   }, canResetPassword && react_1["default"].createElement("div", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: route('password.request'),
-    className: "underline text-sm text-gray-600 hover:text-gray-900"
+    className: "text-sm text-gray-600 underline hover:text-gray-900"
   }, "Forgot your password?")), react_1["default"].createElement("div", {
     className: "flex items-center justify-end"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: route('register'),
-    className: "underline text-sm text-gray-600 hover:text-gray-900"
+    className: "text-sm text-gray-600 underline hover:text-gray-900"
   }, "Need an account?"), react_1["default"].createElement(Button_1["default"], {
     className: (0, classnames_1["default"])('ml-4', {
       'opacity-25': form.processing
@@ -14687,6 +14705,7 @@ function Register() {
   var route = (0, useRoute_1["default"])();
   var form = (0, inertia_react_1.useForm)({
     name: '',
+    username: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -14713,7 +14732,7 @@ function Register() {
   }, "Name"), react_1["default"].createElement(Input_1["default"], {
     id: "name",
     type: "text",
-    className: "mt-1 block w-full",
+    className: "block w-full mt-1",
     value: form.data.name,
     onChange: function onChange(e) {
       return form.setData('name', e.currentTarget.value);
@@ -14724,11 +14743,24 @@ function Register() {
   })), react_1["default"].createElement("div", {
     className: "mt-4"
   }, react_1["default"].createElement(Label_1["default"], {
+    htmlFor: "username"
+  }, "Username"), react_1["default"].createElement(Input_1["default"], {
+    id: "username",
+    type: "text",
+    className: "block w-full mt-1",
+    value: form.data.username,
+    onChange: function onChange(e) {
+      return form.setData('username', e.currentTarget.value);
+    },
+    required: true
+  })), react_1["default"].createElement("div", {
+    className: "mt-4"
+  }, react_1["default"].createElement(Label_1["default"], {
     htmlFor: "email"
   }, "Email"), react_1["default"].createElement(Input_1["default"], {
     id: "email",
     type: "email",
-    className: "mt-1 block w-full",
+    className: "block w-full mt-1",
     value: form.data.email,
     onChange: function onChange(e) {
       return form.setData('email', e.currentTarget.value);
@@ -14741,7 +14773,7 @@ function Register() {
   }, "Password"), react_1["default"].createElement(Input_1["default"], {
     id: "password",
     type: "password",
-    className: "mt-1 block w-full",
+    className: "block w-full mt-1",
     value: form.data.password,
     onChange: function onChange(e) {
       return form.setData('password', e.currentTarget.value);
@@ -14755,7 +14787,7 @@ function Register() {
   }, "Confirm Password"), react_1["default"].createElement(Input_1["default"], {
     id: "password_confirmation",
     type: "password",
-    className: "mt-1 block w-full",
+    className: "block w-full mt-1",
     value: form.data.password_confirmation,
     onChange: function onChange(e) {
       return form.setData('password_confirmation', e.currentTarget.value);
@@ -14780,16 +14812,16 @@ function Register() {
   }, "I agree to the", react_1["default"].createElement("a", {
     target: "_blank",
     href: route('terms.show'),
-    className: "underline text-sm text-gray-600 hover:text-gray-900"
+    className: "text-sm text-gray-600 underline hover:text-gray-900"
   }, "Terms of Service"), "and", react_1["default"].createElement("a", {
     target: "_blank",
     href: route('policy.show'),
-    className: "underline text-sm text-gray-600 hover:text-gray-900"
+    className: "text-sm text-gray-600 underline hover:text-gray-900"
   }, "Privacy Policy"))))), react_1["default"].createElement("div", {
     className: "flex items-center justify-end mt-4"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: route('login'),
-    className: "underline text-sm text-gray-600 hover:text-gray-900"
+    className: "text-sm text-gray-600 underline hover:text-gray-900"
   }, "Already registered?"), react_1["default"].createElement(Button_1["default"], {
     className: (0, classnames_1["default"])('ml-4', {
       'opacity-25': form.processing

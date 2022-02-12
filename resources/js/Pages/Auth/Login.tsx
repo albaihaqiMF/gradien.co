@@ -18,7 +18,7 @@ interface Props {
 export default function Login({ canResetPassword, status }: Props) {
   const route = useRoute();
   const form = useForm({
-    email: '',
+    username: '',
     password: '',
     remember: '',
   });
@@ -37,18 +37,18 @@ export default function Login({ canResetPassword, status }: Props) {
       <JetValidationErrors className="mb-4" />
 
       {status && (
-        <div className="mb-4 font-medium text-sm text-green-600">{status}</div>
+        <div className="mb-4 text-sm font-medium text-green-600">{status}</div>
       )}
 
       <form onSubmit={onSubmit}>
         <div>
-          <JetLabel htmlFor="email">Email</JetLabel>
+          <JetLabel htmlFor="username">Username</JetLabel>
           <JetInput
-            id="email"
-            type="email"
-            className="mt-1 block w-full"
-            value={form.data.email}
-            onChange={e => form.setData('email', e.currentTarget.value)}
+            id="username"
+            type="text"
+            className="block w-full mt-1"
+            value={form.data.username}
+            onChange={e => form.setData('username', e.currentTarget.value)}
             required
             autoFocus
           />
@@ -59,7 +59,7 @@ export default function Login({ canResetPassword, status }: Props) {
           <JetInput
             id="password"
             type="password"
-            className="mt-1 block w-full"
+            className="block w-full mt-1"
             value={form.data.password}
             onChange={e => form.setData('password', e.currentTarget.value)}
             required
@@ -80,12 +80,12 @@ export default function Login({ canResetPassword, status }: Props) {
           </label>
         </div>
 
-        <div className="flex flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0 mt-4">
+        <div className="flex flex-col mt-4 space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0">
           {canResetPassword && (
             <div>
               <InertiaLink
                 href={route('password.request')}
-                className="underline text-sm text-gray-600 hover:text-gray-900"
+                className="text-sm text-gray-600 underline hover:text-gray-900"
               >
                 Forgot your password?
               </InertiaLink>
@@ -95,7 +95,7 @@ export default function Login({ canResetPassword, status }: Props) {
           <div className="flex items-center justify-end">
             <InertiaLink
               href={route('register')}
-              className="underline text-sm text-gray-600 hover:text-gray-900"
+              className="text-sm text-gray-600 underline hover:text-gray-900"
             >
               Need an account?
             </InertiaLink>

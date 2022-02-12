@@ -16,6 +16,7 @@ export default function Register() {
   const route = useRoute();
   const form = useForm({
     name: '',
+    username: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -41,7 +42,7 @@ export default function Register() {
           <JetInput
             id="name"
             type="text"
-            className="mt-1 block w-full"
+            className="block w-full mt-1"
             value={form.data.name}
             onChange={e => form.setData('name', e.currentTarget.value)}
             required
@@ -51,11 +52,23 @@ export default function Register() {
         </div>
 
         <div className="mt-4">
+          <JetLabel htmlFor="username">Username</JetLabel>
+          <JetInput
+            id="username"
+            type="text"
+            className="block w-full mt-1"
+            value={form.data.username}
+            onChange={e => form.setData('username', e.currentTarget.value)}
+            required
+          />
+        </div>
+
+        <div className="mt-4">
           <JetLabel htmlFor="email">Email</JetLabel>
           <JetInput
             id="email"
             type="email"
-            className="mt-1 block w-full"
+            className="block w-full mt-1"
             value={form.data.email}
             onChange={e => form.setData('email', e.currentTarget.value)}
             required
@@ -67,7 +80,7 @@ export default function Register() {
           <JetInput
             id="password"
             type="password"
-            className="mt-1 block w-full"
+            className="block w-full mt-1"
             value={form.data.password}
             onChange={e => form.setData('password', e.currentTarget.value)}
             required
@@ -80,7 +93,7 @@ export default function Register() {
           <JetInput
             id="password_confirmation"
             type="password"
-            className="mt-1 block w-full"
+            className="block w-full mt-1"
             value={form.data.password_confirmation}
             onChange={e =>
               form.setData('password_confirmation', e.currentTarget.value)
@@ -106,7 +119,7 @@ export default function Register() {
                   <a
                     target="_blank"
                     href={route('terms.show')}
-                    className="underline text-sm text-gray-600 hover:text-gray-900"
+                    className="text-sm text-gray-600 underline hover:text-gray-900"
                   >
                     Terms of Service
                   </a>
@@ -114,7 +127,7 @@ export default function Register() {
                   <a
                     target="_blank"
                     href={route('policy.show')}
-                    className="underline text-sm text-gray-600 hover:text-gray-900"
+                    className="text-sm text-gray-600 underline hover:text-gray-900"
                   >
                     Privacy Policy
                   </a>
@@ -127,7 +140,7 @@ export default function Register() {
         <div className="flex items-center justify-end mt-4">
           <InertiaLink
             href={route('login')}
-            className="underline text-sm text-gray-600 hover:text-gray-900"
+            className="text-sm text-gray-600 underline hover:text-gray-900"
           >
             Already registered?
           </InertiaLink>
